@@ -12,8 +12,15 @@ require_once 'Kisi.class.php';
 
 class Ogrenci extends \cc\Kisi
 {
-    protected $ogrenciNo;
+    private $ogrenciNo;
 
+/*
+    function __construct($ogrenciNo, $adi, $soyadi)
+    {
+        parent::__construct($adi,$soyadi);
+        $this->setOgrenciNo($ogrenciNo);
+
+    }*/
 
     /**
      * @return mixed
@@ -31,6 +38,12 @@ class Ogrenci extends \cc\Kisi
         $this->ogrenciNo = $ogrenciNo;
     }
 
+    public function __set($prop, $val) {
+        $this->$prop = $val;
+    }
+    public function __get($prop) {
+        return $this->$prop;
+    }
 
 
 }

@@ -1,30 +1,23 @@
 <?php
-		 require_once 'Include/VeritabaniBaglantisi.php';
-//
-// 		
-		$sifre=md5($_POST['sifre']);
+require_once (__DIR__.'/Model/OgrenciVeritabani.class.php');
+require_once(__DIR__.'/Model/Ogrenci.class.php');
+require_once 'Model/ModelFactory.class.php';
 
-		$sql="INSERT INTO ogrenciler (ogrenciNo,adi,soyadi,sifre,telefonNo)
-			VALUES ('$_POST[ogrenciNo]','$_POST[adi]','$_POST[soyadi]',
-			'$sifre','$_POST[telefonNo]')";
-// 			 
-		$result = mysqli_real_query($baglantiNo,$sql);
-// 		
-		mysqli_close($baglantiNo);
+//$ogrenci=ModelFactory::getModel('Ogrenci',$_POST[ogrenciNo],$_POST[adi],$_POST[soyadi]);
+$ogrenci=ModelFactory::getModel('Ogrenci');
 
-		// //$data=array();
-		if($result)
-		{
-			
-			$data= array ('sonuc'=>'1');
-			//print_r($data);	
-		}
-		else 
-		{
-			$data= array ('sonuc'=>'0');
-			//print_r($data);
-			
-		}
-		//$data= array ('sonuc'=>'1');
-		echo json_encode($data);
-?>
+$ogrenci->setOgrenciNo($_POST[ogrenciNo]);
+$ogrenci->setAdi($_POST[adi]);
+$ogrenci->setSoyadi($_POST[soyadi]);
+
+//var_dump($ogrenci);
+$entities = array("ogrenciNo" => "'{$ogrenci->getOgrenciNo()}'", "adi" => "'{$ogrenci->getAdi()}'", "soyadi" =>"'{$ogrenci->getSoyadi()}'");
+
+//var_dump( $entities);
+
+//$entities = array("ogrenciNo" => "'$_POST[ogrenciNo]'", "adi" => "'$_POST[adi]'", "soyadi" =>"'$_POST[soyadi]'");
+
+$data= (\cc\OgrenciVeritabani::insert('Ogrenci',$entities)) ? array ('sonuc'=>'1') : array ('sonuc'=>'0');
+
+echo json_encode($data);
+

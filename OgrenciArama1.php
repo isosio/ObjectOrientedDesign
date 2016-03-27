@@ -13,10 +13,11 @@ require_once(__DIR__.'/Model/OgrenciGoruntuleJSON.class.php');
         OR adi like '".$_POST['adi']."%' OR soyadi='".$_POST['soyadi']."'";
 else
 */
-
-$sql="SELECT \"ogrenciNo\", \"adi\", \"soyadi\" FROM \"Ogrenci\" where \"adi\" Like '".$_POST['adi']."%'";
-
-
+if(($_POST['mod'])==1)
+	$sql="SELECT \"ogrenciNo\", \"adi\", \"soyadi\" FROM \"Ogrenci\" where \"adi\" Like '".$_POST['adi']."%'";
+else if(($_POST['mod'])==2)
+	$sql="SELECT \"ogrenciNo\", \"adi\", \"soyadi\" FROM \"Ogrenci\" Where \"ogrenciNo\"='".$_POST['ogrenciNo']."'";
+//echo $sql;
 //$sql="SELECT * FROM \"AkademikPersonel\" where \"personelNo\"= :pn AND \"sifre\"= :sfr";
 
 $query = $veritabaniBaglantisi->prepare($sql);
@@ -28,27 +29,27 @@ $query->execute();
 $query->setFetchMode(PDO::FETCH_CLASS, "\cc\Ogrenci");
 $ogrenciler=$query->fetchAll();
 
-
+//var_dump($ogrenciler);
 
 ?>
 <div class="table-responsive">
-	<table class="table table-hover">
+	<table class="table  table-hover table-condensed" style="font-size: x-small">
 		<thead>
 		<tr>
 			<th>Öğrenci No</th>
 			<th> Adı</th>
 			<th>Soyadi</th>
-			<th>JSON</th>
+
 			<th>Düzenle</th>
 			<th>Sil</th>
 			<th>Ayrıntı</th>
-
+			<th>JSON</th>
 		</tr>
 		</thead>
 		<?php
 
 		$satirNo=0;
-		$ogrenciJSON = ModelOlusturucu::modelOlustur('OgrenciGoruntuleJSON');
+		$ogrenciJSON = ModelFactory::getModel('OgrenciGoruntuleJSON');
 		foreach($ogrenciler as $ogrenci)
 		{
 			if($satirNo++%2)
@@ -62,7 +63,7 @@ $ogrenciler=$query->fetchAll();
 			echo "<td>". $ogrenci->getOgrenciNo()."</td>";
 			echo "<td>". $ogrenci->getAdi()."</td>";
 			echo "<td>". $ogrenci->getSoyadi()."</td>";
-			echo "<td>". $ogrenciJSON->tekGoruntule($ogrenci)."</td>";
+
 
 			?>
 			<td>
@@ -74,6 +75,7 @@ $ogrenciler=$query->fetchAll();
 			<?php
 
 			echo "<td>  <a href=\"#\" class=\"ayrinti\" rel=\"pop-up\"  id=\"".$ogrenci->getOgrenciNo()."\">Ayrıntı</a></td>";
+			echo "<td>". $ogrenciJSON->getKisi($ogrenci)."</td>";
 			?>
 
 			</tr>

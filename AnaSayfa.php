@@ -58,7 +58,8 @@ session_start();
         <ul class="nav navbar-nav navbar-right">
 
             <li><a href="#"><?php //var_dump($_SESSION);
-                             $ap=$_SESSION['akademikPersonel']; echo $ap->getAdi()." ". $ap->getSoyadi();?></a></li>
+                             $ap=$_SESSION['akademikPersonel']; echo $ap->getAdi()." ". $ap->getSoyadi();
+                                //echo "aa". $_SESSION['baslangicZamani'];?></a></li>
             <li><a href="Include/Cikis.php">  <span class="glyphicon glyphicon-log-out" style="alignment: "></span></a></li>
 
         </ul>

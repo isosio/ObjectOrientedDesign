@@ -8,12 +8,12 @@
  */
 
 namespace cc;
-class Kisi
+abstract class Kisi
 {
 
     protected $adi;
     protected $soyadi;
-    protected $bolum;
+    private $bolum;
 
     /**
      * @return mixed
@@ -65,26 +65,24 @@ class Kisi
 
 
 
-    // function __construct()
-    // {
-    // $this->ad=NULL;
-    // $this->soyad=NULL;
-    // }
-//
-   /* //fonksiyonlar aşırı yüklenemez...
-    function __construct($ad, $soyad, $bolum)
-    {
-        $this->setAdi($ad);
-        $this->setSoyadi($soyad);
-        $this->setBolum($bolum);
 
+
+  /*  function __construct($adi, $soyadi)
+    {
+        $this->setAdi($adi);
+        $this->setSoyadi($soyadi);
     }*/
 
     /**
      * @param mixed $adres
      */
 
-
+    public function __set($prop, $val) {
+        $this->$prop = $val;
+    }
+    public function __get($prop) {
+        return $this->$prop;
+    }
 
 
 

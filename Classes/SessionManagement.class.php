@@ -26,7 +26,7 @@ class SessionManagement {
             //session_set_save_handler($handler, true);
             //session_save_path(__DIR__ . '/sessions');
 
-           /*  Redis ile saklanması için
+            /* Redis ile saklanması için
             ini_set('session.save_handler', 'redis');
             ini_set('session.save_path',    'tcp://127.0.0.1:6379');*/
 
@@ -40,7 +40,7 @@ class SessionManagement {
 
             $_SESSION['baslangicZamani']=time();
 
-            $_SESSION['akademikPersonel']=  serialize($akademikPersonel);
+            $_SESSION['akademikPersonel']=  $akademikPersonel;
             $logger->log($akademikPersonel->getPersonelNo().' baglandi...',LOGGER::INFO);
             //serialize(new User(mysqli_fetch_assoc($result)));
 

@@ -8,9 +8,9 @@
 
 
 
-class ModelOlusturucu {
+class ModelFactory {
 
-    public static function modelOlustur($class,$param1,$param2,$param3,$param4)
+    public static function getModel($class,$param1,$param2,$param3,$param4)
     {
         try
         {

@@ -14,7 +14,7 @@ require_once (__DIR__.'/KisiGoruntuleyici.class.php');
 
 class OgrenciGoruntuleJSON extends \cc\KisiGoruntuleyici
 {
-    public function goruntule()
+    public function getKisiler()
     {
 
         foreach ($this->kisiler as $ogrenci)
@@ -27,7 +27,7 @@ class OgrenciGoruntuleJSON extends \cc\KisiGoruntuleyici
         print json_encode($str);
     }
 
-    public function tekGoruntule(\cc\Ogrenci $ogr)
+    public function getKisi($ogr)
     {
         $arr = array('ogrenciNo' => $ogr->getOgrenciNo(),'adi' => $ogr->getAdi(), 'soyadi' => $ogr->getSoyadi());
         return json_encode($arr);
