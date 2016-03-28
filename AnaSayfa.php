@@ -9,7 +9,7 @@
 $title="Personel Ana Sayfası";
 //require_once 'Include/Baslik.php';
 require_once(__DIR__.'/Model/AkademikPersonel.class.php'); // Session icerisindeki nesnenin oluşturulabilmesi için gerekli
-//require_once 'Guvenlik/PersonelDenetim.php'; //Site içerisindeki tüm sayfalara eklenmeli...
+require_once 'Guvenlik/PersonelDenetim.php'; //Site içerisindeki tüm sayfalara eklenmeli...
 
 session_start();
 
