@@ -10,7 +10,8 @@ $title="Personel Ana Sayfası";
 //require_once 'Include/Baslik.php';
 require_once(__DIR__.'/Model/AkademikPersonel.class.php'); // Session icerisindeki nesnenin oluşturulabilmesi için gerekli
 require_once 'Guvenlik/PersonelDenetim.php'; //Site içerisindeki tüm sayfalara eklenmeli...
-
+require_once (__DIR__.'/Model/ModelFactory.class.php');
+require_once (__DIR__.'/Model/AkademikPersonelGoruntuleJSON.class.php');
 session_start();
 
 //$_SESSION['akademikPersonel']->getAdi();
@@ -58,7 +59,8 @@ session_start();
         <ul class="nav navbar-nav navbar-right">
 
             <li><a href="#"><?php //var_dump($_SESSION);
-                             $ap=$_SESSION['akademikPersonel']; echo $ap->getAdi()." ". $ap->getSoyadi();
+                    $ap=$_SESSION['akademikPersonel']; echo $ap->getAdi()." ". $ap->getSoyadi();
+                    echo ModelFactory::getModel('AkademikPersonelGoruntuleJSON')->getKisi($ap);
                                 //echo "aa". $_SESSION['baslangicZamani'];?></a></li>
             <li><a href="Include/Cikis.php">  <span class="glyphicon glyphicon-log-out" style="alignment: "></span></a></li>
 
