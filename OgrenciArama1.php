@@ -76,6 +76,10 @@ $ogrenciler=$query->fetchAll();
 
 			echo "<td>  <a href=\"#\" class=\"ayrinti\" rel=\"pop-up\"  id=\"".$ogrenci->getOgrenciNo()."\">Ayrıntı</a></td>";
 			echo "<td>". $ogrenciJSON->getKisi($ogrenci)."</td>";
+
+			//Strategy tasarım deseni örneği. XML Görüntülemek gerektiğinde Ogrenci sınıfındaki yazdir içerisini
+			// değiştirmeye gerek kalmadan OgrenciGoruntuleXML sınıfı tanımlanıp XML çıktısı yazdırılabilir.
+			echo "<td>". $ogrenci->yazdir(ModelFactory::getModel('OgrenciGoruntuleJSON'))."</td>";
 			?>
 
 			</tr>
