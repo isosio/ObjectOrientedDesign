@@ -8,18 +8,18 @@
 
 namespace cc;
 
-require_once (__DIR__.'/Ogrenci.class.php');
+require_once (__DIR__.'/AkademikPersonel.class.php');
 require_once (__DIR__.'/KisiGoruntuleyici.class.php');
 
 
-class OgrenciGoruntuleJSON extends \cc\KisiGoruntuleyici
+class AkademikPersonelGoruntuleJSON extends \cc\KisiGoruntuleyici
 {
     public function getKisiler()
     {
 
-        foreach ($this->kisiler as $ogrenci)
+        foreach ($this->kisiler as $akademikPersonel)
         {
-            $str[]= array('ogrenciNo' => $ogrenci->getOgrenciNo(),'adi' => $ogrenci->getAdi(), 'soyadi' => $ogrenci->getSoyadi());
+            $str[]= array('personelNo' => $akademikPersonel->getPersonelNo(),'adi' => $akademikPersonel->getAdi(), 'soyadi' => $akademikPersonel->getSoyadi());
             //print json_encode($urun);
             //print_r($urun);
         }
@@ -27,9 +27,10 @@ class OgrenciGoruntuleJSON extends \cc\KisiGoruntuleyici
         print json_encode($str);
     }
 
-    public function getKisi($ogr)
+    public function getKisi($akademikPersonel)
     {
-        $arr = array('ogrenciNo' => $ogr->getOgrenciNo(),'adi' => $ogr->getAdi(), 'soyadi' => $ogr->getSoyadi());
+        $arr = array('personelNo' => $akademikPersonel->getPersonelNo(),'adi' => $akademikPersonel->getAdi(), 'soyadi' => $akademikPersonel->getSoyadi());
+
         return json_encode($arr);
 
 

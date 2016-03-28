@@ -5,7 +5,7 @@
  * Date: 22.03.2016
  * Time: 23:25
  */
-require_once (__DIR__.'/Model/OgrenciVeritabani.class.php');
+require_once (__DIR__ . '/Model/VeritabaniIslemleri.class.php');
 
 
 ini_set('session.save_handler', 'redis');

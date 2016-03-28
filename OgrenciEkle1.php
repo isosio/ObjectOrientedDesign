@@ -1,5 +1,5 @@
 <?php
-require_once (__DIR__.'/Model/OgrenciVeritabani.class.php');
+require_once (__DIR__ . '/Model/VeritabaniIslemleri.class.php');
 require_once(__DIR__.'/Model/Ogrenci.class.php');
 require_once 'Model/ModelFactory.class.php';
 
@@ -11,13 +11,13 @@ $ogrenci->setAdi($_POST[adi]);
 $ogrenci->setSoyadi($_POST[soyadi]);
 
 //var_dump($ogrenci);
-$entities = array("ogrenciNo" => "'{$ogrenci->getOgrenciNo()}'", "adi" => "'{$ogrenci->getAdi()}'", "soyadi" =>"'{$ogrenci->getSoyadi()}'");
+$entity = array("ogrenciNo" => "'{$ogrenci->getOgrenciNo()}'", "adi" => "'{$ogrenci->getAdi()}'", "soyadi" =>"'{$ogrenci->getSoyadi()}'");
 
 //var_dump( $entities);
 
 //$entities = array("ogrenciNo" => "'$_POST[ogrenciNo]'", "adi" => "'$_POST[adi]'", "soyadi" =>"'$_POST[soyadi]'");
 
-$data= (\cc\OgrenciVeritabani::insert('Ogrenci',$entities)) ? array ('sonuc'=>'1') : array ('sonuc'=>'0');
+$data= (\cc\VeritabaniIslemleri::insert('Ogrenci',$entity)) ? array ('sonuc'=>'1') : array ('sonuc'=>'0');
 
 echo json_encode($data);
 
