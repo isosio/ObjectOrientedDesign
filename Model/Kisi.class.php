@@ -15,6 +15,7 @@ abstract class Kisi
     protected $soyadi;
     private $bolum;
 
+
     /**
      * @return mixed
      */

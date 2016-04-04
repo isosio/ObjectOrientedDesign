@@ -108,23 +108,42 @@
 
 	<form  id="form">
 		<div id="mesaj" class="alert alert-warning">
-
 		</div>
-		<fieldset class="form-group">
-			<label for="ogrenciNo"><strong>Öğrenci No</strong></label>
-			<input id="ogrenciNo" name="ogrenciNo" type="text" class="input-mini" placeholder="Öğrenci Numarasını Giriniz" >
-			<fieldset/>
-			<fieldset class="form-group">
-				<label for="adi" ><strong>Adi</strong></label>
+
+		<table class="table-responsive">
+			<tr>
+				<td>
+					<label for="ogrenciNo"><strong>Öğrenci No</strong></label>
+				</td>
+				<td>
+					<input id="ogrenciNo" name="ogrenciNo" type="text" class="input-mini" placeholder="Öğrenci Numarasını Giriniz" required>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<label for="adi" ><strong>Adi</strong></label>
+				</td>
+				<td>
 				<input id="adi" name="adi" type="text" class="input-mini" placeholder="Öğrenci Adını Giriniz" >
-				<fieldset/>
-				<fieldset class="form-group">
+				</td>
+			</tr>
+			<tr>
+				<td>
 					<label for="soyadi" ><strong>Soyadi</strong></label>
+				</td>
+				<td>
 					<input id="soyadi" name="soyadi" type="text" class="input-mini" placeholder="Öğrenci Soyadını Giriniz" >
-					<fieldset/>
+				</td>
+			</tr>
+			<tr>
+				<td>
 
 					<input id="kaydet" value="Kaydet" class="btn btn-primary">
-				</fieldset>
+				</td>
+				<td> &nbsp;
+				</td>
+			</tr>
+		</table>
 	</form>
 
 

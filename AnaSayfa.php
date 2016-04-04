@@ -57,12 +57,15 @@ session_start();
         </ul>
 
         <ul class="nav navbar-nav navbar-right">
-
-            <li><a href="#"><?php //var_dump($_SESSION);
-                    $ap=$_SESSION['akademikPersonel']; echo $ap->getAdi()." ". $ap->getSoyadi();
-                    echo ModelFactory::getModel('AkademikPersonelGoruntuleJSON')->getKisi($ap);
-                                //echo "aa". $_SESSION['baslangicZamani'];?></a></li>
-            <li><a href="Include/Cikis.php">  <span class="glyphicon glyphicon-log-out" style="alignment: "></span></a></li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php //var_dump($_SESSION);
+                $ap=$_SESSION['akademikPersonel']; echo $ap->getAdi()." ". $ap->getSoyadi();?> <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><?php echo "".ModelFactory::getModel('AkademikPersonelGoruntuleJSON')->getKisi($ap);?></li>
+                    <li><a href="#">Şifre Değiştir</a></li>
+                    <li><a href="Include/Cikis.php">  <span class="glyphicon glyphicon-log-out" style="alignment: "></span> &nbsp; Çıkış</a></li>
+                </ul>
+            </li>
 
         </ul>
 
@@ -88,10 +91,35 @@ session_start();
                 <div class="panel-heading">Duyurular</div>
 
                 <div class="panel-body" id="messages1" style="max-height: 200px">
-                    <ol>
+                    <!--<ol>
                         <li>Duyuru1</li>
                         <li> </li>
-                    </ol>
+                    </ol>-->
+
+                    <div id="duyuru">Duyurular<hr><div id="duyurular"></div></div>
+                    <script src="https://cdn.socket.io/socket.io-1.0.0.js"></script>
+
+                    <script>
+                        // creating a new websocket
+                        var socket = io.connect('http://localhost:8080');
+                        // on every message recived we print the new datas inside the #container div
+                        socket.on('notification', function (data) {
+                            //alert (data);
+                            // convert the json string into a valid javascript object
+                            var _data = JSON.parse(data);
+                            // alert (_data);
+
+                            // $('#duyurular').append(new Date());
+                            $('#duyurular').empty();
+                            $('#duyurular').append(_data.Duyurular.duyuru.duyuruNo);
+                            $('#duyurular').append(_data.Duyurular.duyuru.duyuruAyrinti);
+
+                        });
+                    </script>
+
+
+
+
                 </div>
             </div>
         </div>

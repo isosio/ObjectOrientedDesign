@@ -46,7 +46,3 @@ else
 }
 
 echo json_encode($data);
-//  JavaScript Object Notation yalnızca veri alış-verişi amacıyla oluşturulmuş bir veri biçimlendirme yöntemidir
-// XML e göre daha az yer kaplar. json verilerini java script ile erişmek XML e (parsing is necessary)
-// göre çok daha kolaydır.
-// $.getJSON(), ve $.ajax({ dataType: 'json'}) fonksiyonlarıyla verilere erişilebilir.

@@ -59,7 +59,6 @@ $ogrenciler=$query->fetchAll();
 
 
 
-
 			echo "<td>". $ogrenci->getOgrenciNo()."</td>";
 			echo "<td>". $ogrenci->getAdi()."</td>";
 			echo "<td>". $ogrenci->getSoyadi()."</td>";
