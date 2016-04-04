@@ -4,30 +4,17 @@
  *
  */
 
+var http = require('http');
+var parser = new require('xml2json');
+var fs = require('fs');
 
 
-var app = require('http').createServer(handler),
-  io = require('socket.io').listen(app),
-  parser = new require('xml2json'),
-  fs = require('fs');
+var server = http.createServer(function(req, res) {}).listen(8000);
 
-// creating the server ( localhost:8080 )
-app.listen(8080);
 
-console.log('server listening on localhost:8080');
+console.log('8000 portu dinleniyor...');
 
-// load City.html page
-function handler(req, res) {
-  fs.readFile(__dirname + '/City.html', function(err, data) {
-    if (err) {
-      console.log(err);
-      res.writeHead(500);
-      return res.end('Error loading City.html');
-    }
-    res.writeHead(200);
-    res.end(data);
-  });
-}
+var io = require('socket.io').listen(server);
 
 // creating a new websocket to keep the content updated without any AJAX request
 io.sockets.on('connection', function(socket) {

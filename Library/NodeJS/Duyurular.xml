@@ -2,7 +2,11 @@
 <Duyurular>
 
     <duyuru>
-        <duyuruNo>4</duyuruNo>
-        <duyuruAyrinti>........</duyuruAyrinti>
+        <duyuruNo>1</duyuruNo>
+        <duyuruAyrinti>Duyurular 1  </duyuruAyrinti>
     </duyuru>
+    <!--<duyuru>
+        <duyuruNo>4</duyuruNo>
+        <duyuruAyrinti>Duyurular 4</duyuruAyrinti>
+    </duyuru>-->
 </Duyurular>
