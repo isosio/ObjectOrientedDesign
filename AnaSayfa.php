@@ -60,6 +60,7 @@ session_start();
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php //var_dump($_SESSION);
                 $ap=$_SESSION['akademikPersonel']; echo $ap->getAdi()." ". $ap->getSoyadi();?> <span class="caret"></span></a>
+                <input type="hidden" id="personelNo" value="<?php echo $ap->getPersonelNo();?>">
                 <ul class="dropdown-menu">
                     <li><?php echo "".ModelFactory::getModel('AkademikPersonelGoruntuleJSON')->getKisi($ap);?></li>
                     <li><a href="#">Şifre Değiştir</a></li>
@@ -95,31 +96,18 @@ session_start();
                         <li>Duyuru1</li>
                         <li> </li>
                     </ol>-->
-
-                    <div id="duyuru">Duyurular<hr><div id="duyurular"></div></div>
-                    <script src="https://cdn.socket.io/socket.io-1.0.0.js"></script>
-
-                    <script>
-                        // creating a new websocket
-                        var socket = io.connect('http://localhost:8080');
-                        // on every message recived we print the new datas inside the #container div
-                        socket.on('notification', function (data) {
-                            //alert (data);
-                            // convert the json string into a valid javascript object
-                            var _data = JSON.parse(data);
-                            // alert (_data);
-
-                            // $('#duyurular').append(new Date());
-                            $('#duyurular').empty();
-                            $('#duyurular').append(_data.Duyurular.duyuru.duyuruNo);
-                            $('#duyurular').append(_data.Duyurular.duyuru.duyuruAyrinti);
-
-                        });
-                    </script>
+                    <!--Library/NodeJS klasöründeki sunucu başlatılmalı-->
+                    <div id="duyurular"></div>
 
 
+                </div>
+            </div>
 
-
+            <div class="panel panel-default">
+                <div class="panel-heading">Mesajlar</div>
+                <div class="panel-body"  style="max-height: 200px">
+                    <input type="text" id="m" class="form-control input-sm" placeholder="Mesajınız"/>
+                    <p id="mesajlar" class=".text-success"></p>
                 </div>
             </div>
         </div>
@@ -133,10 +121,52 @@ session_start();
         <p class="text-muted">Öğrenci Bilgi Sistemi</p>
     </div>
 </footer>
-
+<script src="https://cdn.socket.io/socket.io-1.0.0.js"></script>
 <script>
+
     $(function()
     {
+        // Mesajlaşma....
+
+        var socket = io.connect('http://localhost:8000');
+        // on every message recived we print the new datas inside the #container div
+        socket.on('notification', function (data) {
+            //alert (data);
+            // convert the json string into a valid javascript object
+            var data = JSON.parse(data);
+            //alert (_data);
+            // $('#duyurular').append(new Date());
+            $('#duyurular').empty();
+            /*$.each(data, function(i, item) {
+             $('#duyurular').append(i);
+             });​*/
+            $('#duyurular').append(data.Duyurular.duyuru.duyuruNo);
+            $('#duyurular').append(data.Duyurular.duyuru.duyuruAyrinti);
+
+        });
+
+        // Mesajlaşma....
+
+
+        socket.on('mesaj', function(msg){
+            $('#mesajlar').prepend('<small class=\"text-success\">'+msg+'</small><br>');
+        });
+
+
+        $('#m').on('keypress', function (event)
+        {
+            if((event.which === 13)&&( $('#m').val()!='')) {
+            //alert('blur');
+                var gonderilecekMesaj= $('#personelNo').val()+':'+$('#m').val();
+            socket.emit('mesaj', gonderilecekMesaj);
+            $('#m').val('');
+            }
+            //return false;
+        });
+
+
+
+
 
         $('#ogrenciArama,#ogrenciSilme,#ogrenciDuzenleme').click(function()
         {

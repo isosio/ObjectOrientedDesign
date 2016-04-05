@@ -31,4 +31,12 @@ io.sockets.on('connection', function(socket) {
     });
   });
 
+
+  //Mesajlaşma işlemi için
+  socket.on('mesaj', function(msg)
+  {
+    io.emit('mesaj', msg);
+  });
+
+
 });
