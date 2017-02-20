@@ -4,7 +4,13 @@
   "description": "Insecure Web Application Project",
   "main": "index.js",
   "dependencies": {},
-  "devDependencies": {},
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-clean-css": "^3.0.3",
+    "gulp-concat": "^2.6.1",
+    "gulp-uglify": "^2.0.1",
+    "gulp-watch": "^4.3.11"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
