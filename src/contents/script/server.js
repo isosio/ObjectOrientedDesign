@@ -38,5 +38,4 @@ io.sockets.on('connection', function(socket) {
     io.emit('mesaj', msg);
   });
 
-
 });

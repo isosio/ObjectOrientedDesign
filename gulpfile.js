@@ -5,6 +5,7 @@ var gulp = require('gulp'),
     cleanCSS = require('gulp-clean-css'),
     watch = require('gulp-watch'),
     uglify = require('gulp-uglify'),
+    notify = require("gulp-notify"),
     concat = require('gulp-concat');
 
 gulp.task('js',function(){
@@ -15,6 +16,7 @@ gulp.task('js',function(){
         .pipe(uglify())
         .pipe(concat('libraries.min.js'))
         .pipe(gulp.dest('dist/js'))
+        .pipe(notify('Scripts Compiled!'))
 });
 
 gulp.task('css',function(){
@@ -22,6 +24,7 @@ gulp.task('css',function(){
         .pipe(cleanCSS({keepBreaks : true}))
         .pipe(concat('main.min.css'))
         .pipe(gulp.dest('dist/css'))
+        .pipe(notify('Css Compiled!'))
 });
 
 gulp.task('watch',function(){
