@@ -7,10 +7,13 @@ var gulp = require('gulp'),
     uglify = require('gulp-uglify'),
     concat = require('gulp-concat');
 
-gulp.task('scripts',function(){
-    gulp.src('src/contents/script/*.js')
+gulp.task('js',function(){
+    gulp.src([
+        'src/contents/script/*.js',
+        'bower_components/jquery/dist/jquery.min.js'
+    ])
         .pipe(uglify())
-        .pipe(concat('scripts.min.js'))
+        .pipe(concat('libraries.min.js'))
         .pipe(gulp.dest('dist/js'))
 });
 
@@ -22,8 +25,8 @@ gulp.task('css',function(){
 });
 
 gulp.task('watch',function(){
-    gulp.watch('src/contents/script/*.js',['scripts']);
+    gulp.watch('src/contents/script/*.js',['js']);
     gulp.watch('src/contents/css/*.css',['css']);
 });
 
-gulp.task('default', ['css', 'scripts', 'watch']);
+gulp.task('default', ['css', 'js']);
